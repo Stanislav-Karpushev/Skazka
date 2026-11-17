@@ -38,11 +38,20 @@
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         overflow: hidden;
-        height: 100vh;
+        
+        /* Для ПК оставляем 100vh */
+        height: 100vh; 
         width: 100vw;
         position: relative;
         display: flex;
         flex-direction: column;
+      }
+
+      /* Для мобильных (высота с учетом адресной строки) */
+      @media (max-width: 768px) {
+        body {
+          height: 100dvh; 
+        }
       }
 
       /* --- АНИМАЦИЯ ЛИСТЬЕВ --- */
@@ -109,12 +118,10 @@
         justify-content: center;
         transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
         
-
         margin-top: 120px; 
         padding: 0 40px;
       }
 
-      /* Медиа-запрос для мобильных */
       @media (max-width: 768px) {
         .slider {
           margin-top: 200px; 
@@ -126,9 +133,10 @@
         top: 0;
         left: 0;
         width: 100%;
-        height: 100%;
         
-
+        /* Высота наследуется от body (vh или dvh) */
+        height: 100%; 
+        
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -155,10 +163,7 @@
         overflow-y: auto;
         padding-right: 10px;
         padding-bottom: 60px;
-        
-
         flex-grow: 1; 
-        
         padding-top: 0; 
         scrollbar-width: none;
         -ms-overflow-style: none;
@@ -186,10 +191,9 @@
         margin-bottom: 20px;
       }
 
-      /* КНОПКИ */
       .controls {
-        margin-top: auto; 
-        z-index: 10; 
+        margin-top: auto; /* Прижимает к низу */
+        z-index: 10;
         width: 100%;
         display: flex;
         justify-content: center;
@@ -263,7 +267,6 @@
           <p>В одном светлом и уютном, открытом солнцу саду росла дивная и прекрасная белая роза, которая цвела с каждыми новыми лучами солнца. Этой розе было очень одиноко, и в один момент она сама потянулась навстречу молодому садовнику, поверив в его бережные руки. Она отдала ему свою красоту. Поначалу он не мог налюбоваться ею: укрывал от зноя, вовремя поил чистой водой и радовался каждому новому лепестку.</p>
           <p>Но со временем садовник привык к этому чуду и перестал его ценить. Ему начало казаться, что белизна её лепестков и тонкий аромат — это не дар, а её обязанность. Он стал забывать поливать землю у её корней, оставляя розу под палящим солнцем или ледяным ветром. Когда же она начинала увядать и терять силы, он лишь раздражённо отмахивался, упрекая цветок в капризности и неблагодарности.</p>
         </div>
-        <!-- КНОПКИ -->
         <div class="controls">
           <button class="next-btn" onclick="nextSlide()">Дальше</button>
         </div>
