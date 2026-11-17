@@ -1,9 +1,9 @@
 <!doctype html>
 <html lang="ru">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Притча-сказка о белой розе</title>
+    <title>Притча-сказка о Белой Розе</title>
 
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital@0;1&display=swap"
@@ -45,43 +45,7 @@
         flex-direction: column;
       }
 
-      .main-title {
-        position: fixed;
-        top: 20px;
-        left: 0;
-        width: 100%;
-        text-align: center;
-        font-family: "Playfair Display", serif;
-        font-size: 2.5rem;
-        font-weight: 400;
-        font-style: italic;
-        color: #d35400;
-        z-index: 10;
-        pointer-events: none;
-      }
-
-      .petals-layer {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: 1;
-        overflow: hidden;
-      }
-
-      .petal {
-        position: fixed;
-        top: -60px;
-        width: 25px;
-        height: 40px;
-        pointer-events: none;
-        z-index: 1;
-        animation: fall linear infinite;
-        opacity: 0.7;
-      }
-
+      /* --- АНИМАЦИЯ ЛИСТЬЕВ --- */
       @keyframes fall {
         0% {
           transform: translateY(0) rotate(0deg) scale(0.8);
@@ -99,33 +63,43 @@
         }
       }
 
-      .petal.cold {
-        color: var(--petal-cold);
-        animation-duration: 10s;
-      }
-      .petal.warm {
-        color: var(--petal-warm);
-        animation-duration: 12s;
-      }
-      .petal.gold {
-        color: var(--petal-gold);
-        animation-duration: 9s;
+      .petal {
+        position: fixed;
+        top: -60px;
+        width: 25px;
+        height: 40px;
+        pointer-events: none;
+        z-index: 1;
+        animation: fall linear infinite;
+        opacity: 0.7;
       }
 
-      .petal:nth-child(3n) {
-        animation-delay: 2s;
-      }
-      .petal:nth-child(5n) {
-        animation-delay: 4s;
-      }
-      .petal:nth-child(7n) {
-        animation-delay: 1s;
-      }
-      .petal:nth-child(9n) {
-        animation-delay: 3s;
+      .petal.cold { color: var(--petal-cold); animation-duration: 10s; }
+      .petal.warm { color: var(--petal-warm); animation-duration: 12s; }
+      .petal.gold { color: var(--petal-gold); animation-duration: 9s; }
+
+      .petal:nth-child(3n) { animation-delay: 2s; }
+      .petal:nth-child(5n) { animation-delay: 4s; }
+      .petal:nth-child(7n) { animation-delay: 1s; }
+      .petal:nth-child(9n) { animation-delay: 3s; }
+
+      /* --- ЗАГОЛОВОК --- */
+      .main-title {
+        position: fixed;
+        top: 20px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        font-family: "Playfair Display", serif;
+        font-size: 2.5rem;
+        font-weight: 400;
+        font-style: italic;
+        color: #d35400;
+        z-index: 10;
+        pointer-events: none;
       }
 
-      /* Слайдер */
+      /* --- СЛАЙДЕР --- */
       .slider {
         position: relative;
         width: 100%;
@@ -134,11 +108,17 @@
         align-items: flex-start;
         justify-content: center;
         transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-        margin-top: 100px; 
-        padding-top: 20px;
         
+        /* Значение по умолчанию для ПК */
+        margin-top: 120px; 
+        padding: 20px 40px;
+      }
 
-        padding-top: env(safe-area-inset-top, 0); 
+      /* Медиа-запрос для мобильных: увеличиваем отступ */
+      @media (max-width: 768px) {
+        .slider {
+          margin-top: 200px;
+        }
       }
 
       .slide {
@@ -172,7 +152,7 @@
         overflow-y: auto;
         padding-right: 10px;
         padding-bottom: 60px;
-        padding-top: 80px;
+        padding-top: 0;
         scrollbar-width: none;
         -ms-overflow-style: none;
       }
@@ -229,30 +209,24 @@
         transform: translateY(-2px);
       }
 
-      .page-2 h1 {
-        color: #747373;
-      }
-      .page-3 h1 {
-        color: #f1c40f;
-      }
-      .page-4 h1 {
-        цвет: #f39c12;
-      }
-      .page-5 h1 {
-        color: #aa310d;
-      }
+      .page-2 h1 { color: #747373; }
+      .page-3 h1 { color: #f1c40f; }
+      .page-4 h1 { color: #f39c12; }
+      .page-5 h1 { color: #aa310d; }
     </style>
   </head>
   <body>
 
+    <!-- Фиксированный заголовок -->
     <h1 class="main-title">Притча-сказка о Белой Розе</h1>
 
+    <!-- Слой с листьями -->
     <div class="petals-layer">
       <svg width="0" height="0" style="position: absolute">
         <defs>
           <symbol id="rose-petal" viewBox="0 0 30 40">
             <path
-              d="M15 2 C10 2 5 7 5 15 C5 25 15 38 15 38 C15 38 25 25 25 15 C25 7 20 2 15 2 Z"
+              d="M15 2 C10 2 5 7 5 15 C5 25 15 38 15 38 C15 38 25 25 25 15 C5 20 2 15 2 Z"
               fill="currentColor"
               stroke="currentColor"
               stroke-width="0.5"
@@ -261,76 +235,27 @@
         </defs>
       </svg>
 
-      <div class="petal cold" style="left: 5%; animation-delay: 0s">
-        <svg><use href="#rose-petal" /></svg>
-      </div>
-      <div
-        class="petal warm"
-        style="left: 12%; animation-delay: 1s; transform: scaleX(-1)"
-      >
-        <svg><use href="#rose-petal" /></svg>
-      </div>
-      <div class="petal cold" style="left: 8%; animation-delay: 3s">
-        <svg><use href="#rose-petal" /></svg>
-      </div>
-      <div
-        class="petal warm"
-        style="left: 15%; animation-delay: 2s; transform: scale(0.7)"
-      >
-        <svg><use href="#rose-petal" /></svg>
-      </div>
+      <!-- Левая сторона -->
+      <div class="petal cold" style="left: 5%; animation-delay: 0s"><svg><use href="#rose-petal"/></svg></div>
+      <div class="petal warm" style="left: 12%; animation-delay: 1s; transform: scaleX(-1)"><svg><use href="#rose-petal"/></svg></div>
+      <div class="petal cold" style="left: 8%; animation-delay: 3s"><svg><use href="#rose-petal"/></svg></div>
+      <div class="petal warm" style="left: 15%; animation-delay: 2s; transform: scale(0.7)"><svg><use href="#rose-petal"/></svg></div>
 
-      <div class="petal warm" style="right: 10%; animation-delay: 1.5s">
-        <svg><use href="#rose-petal" /></svg>
-      </div>
-      <div
-        class="petal cold"
-        style="right: 5%; animation-delay: 0.5s; transform: scale(1.1)"
-      >
-        <svg><use href="#rose-petal" /></svg>
-      </div>
-      <div
-        class="petal gold"
-        style="
-          right: 12%;
-          animation-delay: 4s;
-          transform: scaleX(-1) scale(0.9);
-        "
-      >
-        <svg><use href="#rose-petal" /></svg>
-      </div>
-      <div class="petal warm" style="right: 8%; animation-delay: 2.5s">
-        <svg><use href="#rose-petal" /></svg>
-      </div>
-      <div
-        class="petal gold"
-        style="right: 15%; animation-delay: 3.5s; transform: scale(0.8)"
-      >
-        <svg><use href="#rose-petal" /></svg>
-      </div>
+      <!-- Правая сторона -->
+      <div class="petal warm" style="right: 10%; animation-delay: 1.5s"><svg><use href="#rose-petal"/></svg></div>
+      <div class="petal cold" style="right: 5%; animation-delay: 0.5s; transform: scale(1.1)"><svg><use href="#rose-petal"/></svg></div>
+      <div class="petal gold" style="right: 12%; animation-delay: 4s; transform: scaleX(-1) scale(0.9)"><svg><use href="#rose-petal"/></svg></div>
+      <div class="petal warm" style="right: 8%; animation-delay: 2.5s"><svg><use href="#rose-petal"/></svg></div>
+      <div class="petal gold" style="right: 15%; animation-delay: 3.5s; transform: scale(0.8)"><svg><use href="#rose-petal"/></svg></div>
     </div>
 
+    <!-- Слайдер -->
     <div class="slider">
       <div class="slide page-1 active">
         <div class="slide-content">
           <h1>Первое тепло</h1>
-          <p>
-            В одном светлом и уютном, открытом солнцу саду росла дивная и
-            прекрасная белая роза, которая цвела с каждыми новыми лучами солнца.
-            Этой розе было очень одиноко, и в один момент она сама потянулась
-            навстречу молодому садовнику, поверив в его бережные руки. Она
-            отдала ему свою красоту. Поначалу он не мог налюбоваться ею: укрывал
-            от зноя, вовремя поил чистой водой и радовался каждому новому
-            лепестку.
-          </p>
-          <p>
-            Но со временем садовник привык к этому чуду и перестал его ценить.
-            Ему начало казаться, что белизна её лепестков и тонкий аромат - это
-            не дар, а её обязанность. Он стал забывать поливать землю у её
-            корней, оставляя розу под палящим солнцем или ледяным ветром. Когда
-            же она начинала увядать и терять силы, он лишь раздражённо
-            отмахивался, упрекая цветок в капризности и неблагодарности.
-          </p>
+          <p>В одном светлом и уютном, открытом солнцу саду росла дивная и прекрасная белая роза, которая цвела с каждыми новыми лучами солнца. Этой розе было очень одиноко, и в один момент она сама потянулась навстречу молодому садовнику, поверив в его бережные руки. Она отдала ему свою красоту. Поначалу он не мог налюбоваться ею: укрывал от зноя, вовремя поил чистой водой и радовался каждому новому лепестку.</p>
+          <p>Но со временем садовник привык к этому чуду и перестал его ценить. Ему начало казаться, что белизна её лепестков и тонкий аромат — это не дар, а её обязанность. Он стал забывать поливать землю у её корней, оставляя розу под палящим солнцем или ледяным ветром. Когда же она начинала увядать и терять силы, он лишь раздражённо отмахивался, упрекая цветок в капризности и неблагодарности.</p>
         </div>
         <div class="controls">
           <button class="next-btn" onclick="nextSlide()">Дальше</button>
@@ -340,19 +265,7 @@
       <div class="slide page-2">
         <div class="slide-content">
           <h1>Одиночество и шипы</h1>
-          <p>
-            Год за годом белая роза отдавала все свои соки, пытаясь цвести и
-            быть еще краше для того, кто перестал смотреть на нее как раньше. Её
-            лепестки медленно тускнели, а стебель надламывался от одиночества и
-            пренебрежения. Страшнее всего было то, что в этом равнодушии она
-            почти поверила, будто большего не заслуживает, и смирилась с тем,
-            что ей суждено тихо засохнуть в этой сухой земле. Ее грусти и печали
-            не было предела, а ее белоснежные хрупкие лепестки осыпались, а
-            стебель все сильнее покрывался колючими шипами. Белой розе казалось
-            будто она осталась одна, в этом холодном мире и потеряв надежду, она
-            приняла свою роль и смирилась с происходящим, закрыв свои
-            белоснежные лепестки от чужих глаз.
-          </p>
+          <p>Год за годом белая роза отдавала все свои соки, пытаясь цвести и быть еще краше для того, кто перестал смотреть на нее как раньше. Её лепестки медленно тускнели, а стебель надламывался от одиночества и пренебрежения. Страшнее всего было то, что в этом равнодушии она почти поверила, будто большего не заслуживает, и смирилась с тем, что ей суждено тихо засохнуть в этой сухой земле. Ее грусти и печали не было предела, а ее белоснежные хрупкие лепестки осыпались, а стебель все сильнее покрывался колючими шипами. Белой розе казалось будто она осталась одна, в этом холодном мире и потеряв надежду, она приняла свою роль и смирилась с происходящим, закрыв свои белоснежные лепестки от чужих глаз.</p>
         </div>
         <div class="controls">
           <button class="next-btn" onclick="nextSlide()">Дальше</button>
@@ -362,20 +275,8 @@
       <div class="slide page-3">
         <div class="slide-content">
           <h1>Появление путника</h1>
-          <p>
-            Но однажды мимо ограды проходил случайный путник. Увидев измученный,
-            поникший цветок, он не стал требовать от него былой красоты. Он
-            молча присел рядом, прикрыл озябшие лепестки от ветра и бережно
-            напоил сухую землю тёплой дождевой водой из своей фляги. Множество
-            шипов и шрамов не отпугнули путника, и он стал приходить каждый
-            день.
-          </p>
-          <p>
-            Путник не винил розу за увядшие листья и не упрекал за слабость. Он
-            не пытался оттолкнуть её из-за шипов, которые были очень острые и
-            колючие, наносили раны всегда, когда он пытался согреть цветок от
-            холода и укрыть от ветра.
-          </p>
+          <p>Но однажды мимо ограды проходил случайный путник. Увидев измученный, поникший цветок, он не стал требовать от него былой красоты. Он молча присел рядом, прикрыл озябшие лепестки от ветра и бережно напоил сухую землю тёплой дождевой водой из своей фляги. Множество шипов и шрамов не отпугнули путника, и он стал приходить каждый день.</p>
+          <p>Путник не винил розу за увядшие листья и не упрекал за слабость. Он не пытался оттолкнуть её из-за шипов, которые были очень острые и колючие, наносили раны всегда, когда он пытался согреть цветок от холода и укрыть от ветра.</p>
         </div>
         <div class="controls">
           <button class="next-btn" onclick="nextSlide()">Дальше</button>
@@ -385,26 +286,9 @@
       <div class="slide page-4">
         <div class="slide-content">
           <h1>Прикосновение тепла</h1>
-          <p>
-            Он терпеливо рыхлил пересохшую почву, убирал колючий сорняк и дарил
-            ей столько тепла и внимания, сколько нужно было, чтобы она просто
-            захотела зацвести вновь, не смотря на все недоверие к путнику,
-            исходящее от цветка.
-          </p>
-          <p>
-            День за днём её стебель понемногу выпрямлялся, а в лепестки по
-            каплям возвращался живой свет. И в одно тихое утро роза поняла
-            простую истину: настоящая любовь умирает не от бурь, а от
-            равнодушия, и оставаться там, где тебя не берегут - значит медленно
-            губить себя.
-          </p>
-          <p>
-            Белая роза наклонилась своими лепестками к путнику, и он протянул
-            руки, предложив перенести её в свой далёкий, тёплый сад. Белая роза
-            позволила вынуть свои корни из обедневшей, чужой земли. Старый сад
-            остался позади, а впереди открылся бескрайний свет, где ей больше не
-            нужно было выпрашивать капли воды и просить заботы.
-          </p>
+          <p>Он терпеливо рыхлил пересохшую почву, убирал колючий сорняк и дарил ей столько тепла и внимания, сколько нужно было, чтобы она просто захотела зацвести вновь, не смотря на все недоверие к путнику, исходящее от цветка.</p>
+          <p>День за днём её стебель понемногу выпрямлялся, а в лепестки по каплям возвращался живой свет. И в одно тихое утро роза поняла простую истину: настоящая любовь умирает не от бурь, а от равнодушия, и оставаться там, где тебя не берегут — значит медленно губить себя.</p>
+          <p>Белая роза наклонилась своими лепестками к путнику, и он протянул руки, предложив перенести её в свой далёкий, тёплый сад. Белая роза позволила вынуть свои корни из обедневшей, чужой земли. Старый сад остался позади, а впереди открылся бескрайний свет, где ей больше не нужно было выпрашивать капли воды и просить заботы.</p>
         </div>
         <div class="controls">
           <button class="next-btn" onclick="nextSlide()">Дальше</button>
@@ -414,25 +298,11 @@
       <div class="slide page-5">
         <div class="slide-content">
           <h1>Бесконечная весна</h1>
-          <p>
-            И через какое-то время белая роза не просто расцвела заново - она
-            расцвела сильнее и ярче. Ведь садовник когда-то полюбил её
-            безупречный расцвет и красоту, а путник полюбил саму её душу -
-            увидел ценность в её увядании, принял её израненной и слабой, не
-            требуя взамен её совершенства. Рядом с тем, кто принял её слабой, ей
-            больше не нужно было притворяться сильной - она могла просто жить и
-            цвести. И именно эта бескорыстная нежность дала ей силы расцвести
-            вновь и стать прекраснее, чем когда-либо.
-          </p>
-          <p>
-            А сам путник прекратил свои странствия и посвятил свою жизнь
-            бесконечной заботе о цветке. Белая роза стала самым дорогим его
-            сокровищем, в котором он видел бесконечную весну и безмятежное
-            успокоение от своих долгих странствий.
-          </p>
+          <p>И через какое-то время белая роза не просто расцвела заново — она расцвела сильнее и ярче. Ведь садовник когда-то полюбил её безупречный расцвет и красоту, а путник полюбил саму её душу — увидел ценность в её увядании, принял её израненной и слабой, не требуя взамен её совершенства. Рядом с тем, кто принял её слабой, ей больше не нужно было притворяться сильной — она могла просто жить и цвести. И именно эта бескорыстная нежность дала ей силы расцвести вновь и стать прекраснее, чем когда-либо.</p>
+          <p>А сам путник прекратил свои странствия и посвятил свою жизнь бесконечной заботе о цветке. Белая роза стала самым дорогим его сокровищем, в котором он видел бесконечную весну и безмятежное успокоение от своих долгих странствий.</p>
         </div>
         <div class="controls">
-          <button class="next-btn" onclick="restart()">Прочитать заново</button>
+          <button class="next-btn" onclick="nextSlide()">Дальше</button>
         </div>
       </div>
     </div>
