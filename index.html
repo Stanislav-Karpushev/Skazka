@@ -45,7 +45,6 @@
         flex-direction: column;
       }
 
-      /* Главный заголовок ВНЕ слайдера */
       .main-title {
         position: fixed;
         top: 20px;
@@ -61,7 +60,6 @@
         pointer-events: none;
       }
 
-      /* Слой с летящими лепестками */
       .petals-layer {
         position: fixed;
         top: 0;
@@ -127,7 +125,6 @@
         animation-delay: 3s;
       }
 
-      /* слайд контейнер */
       .slider {
         position: relative;
         width: 100%;
@@ -136,7 +133,7 @@
         align-items: flex-start;
         justify-content: center;
         transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-        margin-top: 100px;
+        margin-top: 100px; 
         padding-top: 20px;
       }
 
@@ -171,13 +168,12 @@
         overflow-y: auto;
         padding-right: 10px;
 
-        /* Скрываем скроллбар, но оставляем прокрутку */
-        scrollbar-width: none; /* Firefox */
-        -ms-overflow-style: none; /* IE и Edge */
+        scrollbar-width: none;
+        -ms-overflow-style: none;
       }
 
       .slide-content::-webkit-scrollbar {
-        display: none; /* Chrome, Safari, Opera */
+        display: none;
       }
 
       h1 {
@@ -198,13 +194,13 @@
       }
 
       .controls {
-        margin-top: 30px;
+        margin-top: 30px; 
         z-index: 3;
         width: 100%;
         display: flex;
         justify-content: center;
-        position: absolute;
-        bottom: 40px;
+        position: relative; 
+        bottom: 0; 
         left: 0;
       }
 
@@ -227,7 +223,6 @@
         transform: translateY(-2px);
       }
 
-      /* стили страниц */
       .page-2 h1 {
         color: #747373;
       }
@@ -243,10 +238,9 @@
     </style>
   </head>
   <body>
-    <!-- Главный заголовок в самом верху -->
+
     <h1 class="main-title">Притча-сказка о Белой Розе</h1>
 
-    <!-- слой с летящими лепестками -->
     <div class="petals-layer">
       <svg width="0" height="0" style="position: absolute">
         <defs>
@@ -261,7 +255,6 @@
         </defs>
       </svg>
 
-      <!-- левая сторона -->
       <div class="petal cold" style="left: 5%; animation-delay: 0s">
         <svg><use href="#rose-petal" /></svg>
       </div>
@@ -281,7 +274,6 @@
         <svg><use href="#rose-petal" /></svg>
       </div>
 
-      <!-- правая сторона -->
       <div class="petal warm" style="right: 10%; animation-delay: 1.5s">
         <svg><use href="#rose-petal" /></svg>
       </div>
@@ -312,9 +304,7 @@
       </div>
     </div>
 
-    <!-- слайдер с текстом -->
     <div class="slider">
-      <!-- СТРАНИЦА 1 -->
       <div class="slide page-1 active">
         <div class="slide-content">
           <h1>Первое тепло</h1>
@@ -341,7 +331,6 @@
         </div>
       </div>
 
-      <!-- СТРАНИЦА 2 -->
       <div class="slide page-2">
         <div class="slide-content">
           <h1>Одиночество и шипы</h1>
@@ -364,7 +353,6 @@
         </div>
       </div>
 
-      <!-- СТРАНИЦА 3 -->
       <div class="slide page-3">
         <div class="slide-content">
           <h1>Появление путника</h1>
@@ -388,7 +376,6 @@
         </div>
       </div>
 
-      <!-- СТРАНИЦА 4 -->
       <div class="slide page-4">
         <div class="slide-content">
           <h1>Прикосновение тепла</h1>
@@ -418,7 +405,6 @@
         </div>
       </div>
 
-      <!-- СТРАНИЦА 5 -->
       <div class="slide page-5">
         <div class="slide-content">
           <h1>Бесконечная весна</h1>
