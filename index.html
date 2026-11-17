@@ -89,6 +89,35 @@
       .petal:nth-child(7n) { animation-delay: 1s; }
       .petal:nth-child(9n) { animation-delay: 3s; }
 
+      /* --- НОВОЕ: выключение анимации листьев --- */
+      .petals-off .petal {
+        animation-play-state: paused;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      /* --- КНОПКА ПЕРЕКЛЮЧЕНИЯ ЛИСТЬЕВ --- */
+      .petals-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 20;
+        background: var(--button-bg);
+        color: var(--button-text);
+        border: 1px solid var(--accent-border);
+        padding: 8px 16px;
+        font-size: 0.95rem;
+        font-family: "Cormorant Garamond", serif;
+        cursor: pointer;
+        transition: background 0.3s ease, transform 0.2s ease;
+        border-radius: 5px;
+      }
+
+      .petals-toggle:hover {
+        background: var(--button-hover);
+        transform: translateY(-2px);
+      }
+
       /* --- ЗАГОЛОВОК --- */
       .main-title {
         position: fixed;
@@ -227,8 +256,11 @@
     <!-- Фиксированный заголовок -->
     <h1 class="main-title">Притча-сказка о Белой Розе</h1>
 
+    <!-- Кнопка переключения анимации листьев -->
+    <button class="petals-toggle" id="petalsToggle" onclick="togglePetals()">Листья: вкл</button>
+
     <!-- Слой с листьями -->
-    <div class="petals-layer">
+    <div class="petals-layer" id="petalsLayer">
       <svg width="0" height="0" style="position: absolute">
         <defs>
           <symbol id="rose-petal" viewBox="0 0 30 40">
@@ -345,6 +377,22 @@
           slides[currentSlide].classList.add("active");
         }
       });
+
+      // --- НОВОЕ: переключение анимации листьев ---
+      let petalsEnabled = true;
+
+      function togglePetals() {
+        petalsEnabled = !petalsEnabled;
+        const layer = document.getElementById("petalsLayer");
+        const btn = document.getElementById("petalsToggle");
+        if (petalsEnabled) {
+          layer.classList.remove("petals-off");
+          btn.textContent = "Листья: вкл";
+        } else {
+          layer.classList.add("petals-off");
+          btn.textContent = "Листья: выкл";
+        }
+      }
     </script>
   </body>
 </html>
